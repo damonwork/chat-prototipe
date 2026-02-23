@@ -36,6 +36,7 @@
 		AA100000000000000000001B /* ConversationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000001B /* ConversationListView.swift */; };
 		AA100000000000000000001C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000001C /* SettingsView.swift */; };
 		AA100000000000000000001D /* BotResponseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000001D /* BotResponseService.swift */; };
+		AA100000000000000000001E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000001E /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		AA200000000000000000001B /* ConversationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Conversations/ConversationListView.swift; sourceTree = "<group>"; };
 		AA200000000000000000001C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Settings/SettingsView.swift; sourceTree = "<group>"; };
 		AA200000000000000000001D /* BotResponseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/BotResponseService.swift; sourceTree = "<group>"; };
+		AA200000000000000000001E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Auth/OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				AA2000000000000000000016 /* ConversationListViewModel.swift */,
 				AA2000000000000000000017 /* SettingsViewModel.swift */,
 				AA2000000000000000000018 /* LoginView.swift */,
+				AA200000000000000000001E /* OnboardingView.swift */,
 				AA2000000000000000000019 /* ChatView.swift */,
 				AA200000000000000000001A /* CommonViews.swift */,
 				AA200000000000000000001B /* ConversationListView.swift */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA100000000000000000001E /* OnboardingView.swift in Sources */,
 				AA100000000000000000001D /* BotResponseService.swift in Sources */,
 				AA100000000000000000001C /* SettingsView.swift in Sources */,
 				AA100000000000000000001B /* ConversationListView.swift in Sources */,

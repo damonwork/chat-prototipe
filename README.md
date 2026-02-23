@@ -54,6 +54,7 @@ ChatPrototipe/
 - SwiftData persistence for conversations and messages
 - Conversation list with search, pin, and delete
 - Local bot replies with motivational messages and keyword-based reactions
+- Multi-step first-run onboarding to guide setup and usage
 - Local profile setup (name + photo) without login
 - App settings for theme and chat behavior
 - Structured logs with `OSLog`

@@ -27,10 +27,28 @@ struct RootView: View {
             ProfileSetupView()
                 .environment(appState)
         }
+        .fullScreenCover(isPresented: Binding(
+            get: { appState.showingOnboarding },
+            set: { appState.showingOnboarding = $0 }
+        )) {
+            OnboardingFlowView(
+                onConfigureProfile: {
+                    appState.onboarding.markCompleted()
+                    appState.showingOnboarding = false
+                    appState.showingProfile = true
+                },
+                onFinishWithoutProfile: {
+                    appState.onboarding.markCompleted()
+                    appState.showingOnboarding = false
+                }
+            )
+        }
         .onAppear {
             AppLog.app.info("RootView started")
             ensureConversationExists()
-            if appState.profile.shouldShowOnboarding {
+            if appState.onboarding.shouldPresent {
+                appState.showingOnboarding = true
+            } else if appState.profile.shouldShowOnboarding {
                 appState.showingProfile = true
             }
         }

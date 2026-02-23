@@ -2,6 +2,32 @@ import Observation
 import Foundation
 
 @Observable
+final class OnboardingStore {
+    var hasCompleted: Bool {
+        didSet { persist() }
+    }
+
+    private let defaults = UserDefaults.standard
+    private let storageKey = "local.onboarding.completed"
+
+    init() {
+        hasCompleted = defaults.bool(forKey: storageKey)
+    }
+
+    var shouldPresent: Bool {
+        !hasCompleted
+    }
+
+    func markCompleted() {
+        hasCompleted = true
+    }
+
+    private func persist() {
+        defaults.set(hasCompleted, forKey: storageKey)
+    }
+}
+
+@Observable
 final class ProfileStore {
     var profile: UserProfile {
         didSet { persist() }
@@ -68,7 +94,9 @@ final class SettingsStore {
 final class AppState {
     var selectedConversationID: UUID?
     var settings = SettingsStore()
+    var onboarding = OnboardingStore()
     var profile = ProfileStore()
     var showingSettings = false
     var showingProfile = false
+    var showingOnboarding = false
 }
