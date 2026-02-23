@@ -3,7 +3,7 @@ import SwiftUI
 
 struct RootView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: [SortDescriptor(\Conversation.isPinned, order: .reverse), SortDescriptor(\Conversation.updatedAt, order: .reverse)])
+    @Query(sort: [SortDescriptor(\Conversation.updatedAt, order: .reverse)])
     private var conversations: [Conversation]
 
     @State private var appState = AppState()
