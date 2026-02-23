@@ -10,7 +10,7 @@ struct OnboardingFlowView: View {
     private let steps: [OnboardingStep] = [
         OnboardingStep(
             title: "Welcome! 👋",
-            subtitle: "ChatPrototipo is your personal support chat. I'm here to listen and motivate you every day.",
+            subtitle: "Chat Prototype is your personal support chat. I'm here to listen and motivate you every day.",
             icon: "sparkles",
             accent: [.indigo, .blue],
             symbolEffect: "sparkles"

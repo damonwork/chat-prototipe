@@ -173,7 +173,7 @@ struct SettingsView: View {
 
                         // App info footer
                         VStack(spacing: 4) {
-                            Text("ChatPrototipo")
+                            Text("Chat Prototype")
                                 .font(.system(size: 13, weight: .semibold))
                                 .foregroundStyle(.secondary)
                             Text("Local-first · Private · Made with ❤️")
