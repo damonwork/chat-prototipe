@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA1000000000000000000001 /* ChatPrototipoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000001 /* ChatPrototipoApp.swift */; };
+		AA1000000000000000000001 /* ChatPrototypeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000001 /* ChatPrototypeApp.swift */; };
 		AA1000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000002 /* ContentView.swift */; };
 		AA1000000000000000000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000003 /* Assets.xcassets */; };
 		AA1000000000000000000004 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000004 /* Preview Assets.xcassets */; };
@@ -40,8 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AA2000000000000000000000 /* ChatPrototipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatPrototipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA2000000000000000000001 /* ChatPrototipoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPrototipoApp.swift; sourceTree = "<group>"; };
+		AA2000000000000000000000 /* ChatPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA2000000000000000000001 /* ChatPrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPrototypeApp.swift; sourceTree = "<group>"; };
 		AA2000000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA2000000000000000000003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA2000000000000000000004 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -87,15 +87,15 @@
 		AA4000000000000000000000 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA2000000000000000000000 /* ChatPrototipe.app */,
+				AA2000000000000000000000 /* ChatPrototype.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AA4000000000000000000001 /* ChatPrototipe */ = {
+		AA4000000000000000000001 /* ChatPrototype */ = {
 			isa = PBXGroup;
 			children = (
-				AA2000000000000000000001 /* ChatPrototipoApp.swift */,
+				AA2000000000000000000001 /* ChatPrototypeApp.swift */,
 				AA2000000000000000000002 /* ContentView.swift */,
 				AA2000000000000000000005 /* AppState.swift */,
 				AA2000000000000000000006 /* RootView.swift */,
@@ -126,7 +126,7 @@
 				AA2000000000000000000003 /* Assets.xcassets */,
 				AA4000000000000000000002 /* Preview Content */,
 			);
-			path = ChatPrototipe;
+			path = ChatPrototype;
 			sourceTree = "<group>";
 		};
 		AA4000000000000000000002 /* Preview Content */ = {
@@ -140,7 +140,7 @@
 		AA4000000000000000000099 /* MainGroup */ = {
 			isa = PBXGroup;
 			children = (
-				AA4000000000000000000001 /* ChatPrototipe */,
+				AA4000000000000000000001 /* ChatPrototype */,
 				AA4000000000000000000000 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -148,9 +148,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA5000000000000000000001 /* ChatPrototipe */ = {
+		AA5000000000000000000001 /* ChatPrototype */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA7000000000000000000002 /* Build configuration list for PBXNativeTarget "ChatPrototipe" */;
+			buildConfigurationList = AA7000000000000000000002 /* Build configuration list for PBXNativeTarget "ChatPrototype" */;
 			buildPhases = (
 				AA3000000000000000000000 /* Sources */,
 				AA3000000000000000000001 /* Frameworks */,
@@ -160,9 +160,9 @@
 			);
 			dependencies = (
 			);
-			name = ChatPrototipe;
-			productName = ChatPrototipe;
-			productReference = AA2000000000000000000000 /* ChatPrototipe.app */;
+			name = ChatPrototype;
+			productName = ChatPrototype;
+			productReference = AA2000000000000000000000 /* ChatPrototype.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -180,7 +180,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AA7000000000000000000001 /* Build configuration list for PBXProject "ChatPrototipe" */;
+			buildConfigurationList = AA7000000000000000000001 /* Build configuration list for PBXProject "ChatPrototype" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = es;
 			hasScannedForEncodings = 0;
@@ -193,7 +193,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA5000000000000000000001 /* ChatPrototipe */,
+				AA5000000000000000000001 /* ChatPrototype */,
 			);
 		};
 /* End PBXProject section */
@@ -242,7 +242,7 @@
 				AA1000000000000000000006 /* RootView.swift in Sources */,
 				AA1000000000000000000005 /* AppState.swift in Sources */,
 				AA1000000000000000000002 /* ContentView.swift in Sources */,
-				AA1000000000000000000001 /* ChatPrototipoApp.swift in Sources */,
+				AA1000000000000000000001 /* ChatPrototypeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +372,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ChatPrototipe/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ChatPrototype/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -402,7 +402,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ChatPrototipe/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ChatPrototype/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -428,7 +428,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA7000000000000000000001 /* Build configuration list for PBXProject "ChatPrototipe" */ = {
+		AA7000000000000000000001 /* Build configuration list for PBXProject "ChatPrototype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA7000000000000000000010 /* Debug */,
@@ -437,7 +437,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA7000000000000000000002 /* Build configuration list for PBXNativeTarget "ChatPrototipe" */ = {
+		AA7000000000000000000002 /* Build configuration list for PBXNativeTarget "ChatPrototype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA7000000000000000000020 /* Debug */,

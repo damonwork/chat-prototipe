@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct ChatPrototipoApp: App {
+struct ChatPrototypeApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
