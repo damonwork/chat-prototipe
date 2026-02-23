@@ -7,135 +7,145 @@ struct ProfileSetupView: View {
 
     @State private var selectedPhotoItem: PhotosPickerItem?
     @State private var draftName = ""
-    @State private var headerScale = false
+    @State private var isFocused = false
     @State private var saved = false
+    @FocusState private var nameFieldFocused: Bool
 
     var body: some View {
         NavigationStack {
             ZStack {
-                // Soft gradient background
-                LinearGradient(
-                    colors: [Color.indigo.opacity(0.06), Color(.systemGroupedBackground)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-                .ignoresSafeArea()
+                Color(.systemGroupedBackground).ignoresSafeArea()
 
-                ScrollView {
-                    VStack(spacing: 28) {
-                        // Avatar hero section
-                        VStack(spacing: 16) {
-                            ZStack(alignment: .bottomTrailing) {
+                VStack(spacing: 0) {
+                    // Avatar + hint section
+                    VStack(spacing: 14) {
+                        // Avatar circle with "add photo" overlay
+                        PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
+                            ZStack {
                                 ProfileAvatarView(
                                     avatarData: appState.profile.profile.avatarData,
                                     displayName: appState.profile.profile.displayName,
-                                    size: 100
+                                    size: 88
                                 )
-                                .shadow(color: .indigo.opacity(0.3), radius: 16, x: 0, y: 8)
-                                .scaleEffect(headerScale ? 1.0 : 0.85)
-                                .animation(.spring(response: 0.5, dampingFraction: 0.7), value: headerScale)
 
-                                PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
-                                    ZStack {
-                                        Circle()
-                                            .fill(LinearGradient(colors: [.indigo, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
-                                            .frame(width: 30, height: 30)
-                                        Image(systemName: "camera.fill")
-                                            .font(.system(size: 13, weight: .semibold))
-                                            .foregroundStyle(.white)
-                                    }
-                                }
-                            }
-
-                            Text(appState.profile.profile.displayName.isEmpty ? "Your Name" : appState.profile.profile.displayName)
-                                .font(.system(size: 20, weight: .semibold, design: .rounded))
-                                .foregroundStyle(appState.profile.profile.displayName.isEmpty ? .secondary : .primary)
-                                .animation(.easeInOut(duration: 0.2), value: appState.profile.profile.displayName)
-
-                            Text("Everything stays on your device 🔒")
-                                .font(.caption)
-                                .foregroundStyle(.tertiary)
-                        }
-                        .padding(.top, 24)
-
-                        // Form card
-                        VStack(spacing: 0) {
-                            formRow(icon: "person.fill", iconColor: .indigo) {
-                                TextField("Display name", text: $draftName)
-                                    .textInputAutocapitalization(.words)
-                                    .font(.system(size: 15))
-                            }
-
-                            Divider().padding(.leading, 52)
-
-                            PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
-                                formRow(icon: "photo.fill", iconColor: .teal) {
-                                    Text("Choose photo")
-                                        .foregroundStyle(.primary)
-                                        .font(.system(size: 15))
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .font(.system(size: 12, weight: .semibold))
-                                        .foregroundStyle(.tertiary)
-                                }
-                            }
-                            .buttonStyle(.plain)
-
-                            if appState.profile.profile.avatarData != nil {
-                                Divider().padding(.leading, 52)
-                                Button(role: .destructive) {
-                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.75)) {
-                                        appState.profile.profile.avatarData = nil
-                                    }
-                                } label: {
-                                    formRow(icon: "trash.fill", iconColor: .red) {
-                                        Text("Remove photo")
-                                            .foregroundStyle(.red)
-                                            .font(.system(size: 15))
+                                // Overlay label only when no photo
+                                if appState.profile.profile.avatarData == nil {
+                                    VStack(spacing: 2) {
                                         Spacer()
+                                        Text("add\nphoto")
+                                            .font(.system(size: 11, weight: .semibold))
+                                            .multilineTextAlignment(.center)
+                                            .foregroundStyle(.indigo)
+                                            .padding(.bottom, 10)
                                     }
+                                    .frame(width: 88, height: 88)
+                                }
+                            }
+                        }
+                        .buttonStyle(.plain)
+
+                        // Description text (like WhatsApp)
+                        Text("Enter your name and add an optional profile picture")
+                            .font(.system(size: 14))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 40)
+                    }
+                    .padding(.top, 36)
+                    .padding(.bottom, 36)
+
+                    // Name field with bottom line only
+                    VStack(spacing: 0) {
+                        HStack(spacing: 12) {
+                            TextField("Your name", text: $draftName)
+                                .textInputAutocapitalization(.words)
+                                .font(.system(size: 17))
+                                .focused($nameFieldFocused)
+                                .onSubmit { saveAndDismiss() }
+
+                            if !draftName.isEmpty {
+                                Button {
+                                    draftName = ""
+                                } label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundStyle(.tertiary)
+                                        .font(.system(size: 18))
                                 }
                                 .buttonStyle(.plain)
                             }
                         }
-                        .background(
-                            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                .fill(Color(.secondarySystemGroupedBackground))
-                        )
                         .padding(.horizontal, 20)
+                        .padding(.vertical, 14)
+
+                        // Bottom line — indigo when focused, separator otherwise
+                        Rectangle()
+                            .fill(nameFieldFocused ? Color.indigo : Color(.separator))
+                            .frame(height: nameFieldFocused ? 2 : 0.5)
+                            .animation(.easeInOut(duration: 0.2), value: nameFieldFocused)
                     }
-                    .padding(.bottom, 40)
+                    .background(Color(.secondarySystemGroupedBackground))
+
+                    // Remove photo row (only when photo is set)
+                    if appState.profile.profile.avatarData != nil {
+                        Button(role: .destructive) {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.75)) {
+                                appState.profile.profile.avatarData = nil
+                            }
+                        } label: {
+                            HStack {
+                                Image(systemName: "trash")
+                                    .font(.system(size: 14))
+                                Text("Remove photo")
+                                    .font(.system(size: 15))
+                            }
+                            .foregroundStyle(.red)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.vertical, 14)
+                        }
+                        .buttonStyle(.plain)
+                        .background(Color(.secondarySystemGroupedBackground))
+                        .padding(.top, 1)
+                    }
+
+                    Spacer()
+
+                    // Done button — full width, indigo, capsule
+                    Button(action: saveAndDismiss) {
+                        Text("Done")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundStyle(draftName.trimmingCharacters(in: .whitespaces).isEmpty ? .secondary : .white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 15)
+                            .background(
+                                Capsule()
+                                    .fill(
+                                        draftName.trimmingCharacters(in: .whitespaces).isEmpty
+                                            ? Color(.systemFill)
+                                            : LinearGradient(colors: [.indigo, .blue], startPoint: .leading, endPoint: .trailing)
+                                    )
+                            )
+                            .animation(.easeInOut(duration: 0.2), value: draftName.isEmpty)
+                    }
+                    .disabled(draftName.trimmingCharacters(in: .whitespaces).isEmpty)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 32)
                 }
             }
-            .navigationTitle("Profile")
+            .navigationTitle("Edit Profile")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") {
                         appState.showingProfile = false
                     }
-                    .foregroundStyle(.secondary)
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        saveDraftName()
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                            saved = true
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                            appState.showingProfile = false
-                        }
-                    }) {
-                        Label("Done", systemImage: saved ? "checkmark" : "")
-                            .font(.system(size: 15, weight: .semibold))
-                            .foregroundStyle(.indigo)
-                            .animation(.easeInOut(duration: 0.2), value: saved)
-                    }
+                    .foregroundStyle(.indigo)
                 }
             }
             .onAppear {
-                draftName = appState.profile.profile.displayName
-                withAnimation { headerScale = true }
+                draftName = appState.profile.profile.displayName == "You" ? "" : appState.profile.profile.displayName
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    nameFieldFocused = true
+                }
             }
             .onChange(of: selectedPhotoItem) { _, newValue in
                 guard let item = newValue else { return }
@@ -147,32 +157,14 @@ struct ProfileSetupView: View {
                     }
                 }
             }
-            .onChange(of: draftName) { _, _ in
-                saveDraftName()
-            }
         }
     }
 
-    @ViewBuilder
-    private func formRow<Content: View>(icon: String, iconColor: Color, @ViewBuilder content: () -> Content) -> some View {
-        HStack(spacing: 14) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(iconColor)
-                    .frame(width: 30, height: 30)
-                Image(systemName: icon)
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundStyle(.white)
-            }
-            content()
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 13)
-    }
-
-    private func saveDraftName() {
+    private func saveAndDismiss() {
         let clean = draftName.trimmingCharacters(in: .whitespacesAndNewlines)
-        appState.profile.profile.displayName = clean.isEmpty ? "You" : clean
+        guard !clean.isEmpty else { return }
+        appState.profile.profile.displayName = clean
+        appState.showingProfile = false
     }
 }
 
@@ -206,7 +198,10 @@ struct ProfileAvatarView: View {
         .clipShape(Circle())
         .overlay(
             Circle()
-                .strokeBorder(Color.white.opacity(0.35), lineWidth: size * 0.03)
+                .strokeBorder(
+                    LinearGradient(colors: [.indigo.opacity(0.5), .blue.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing),
+                    lineWidth: size * 0.04
+                )
         )
     }
 
