@@ -1,34 +1,63 @@
 # ChatPrototipo
 
-Prototipo de aplicación de chat construida con **SwiftUI** para iOS/iPadOS.
+Chat prototype app built with SwiftUI for iOS/iPadOS.
 
-## Requisitos
+## Requirements
 
 - Xcode 15+
 - iOS 17+ / iPadOS 17+
 - Swift 5.9+
 
-## Estructura del proyecto
+## Project structure
 
 ```
 ChatPrototipe/
-├── ChatPrototipoApp.swift   # Punto de entrada (@main)
-├── ContentView.swift        # UI principal: lista de mensajes + barra de entrada
-├── Assets.xcassets/         # Recursos (icono, colores)
-└── Preview Content/         # Assets solo para previews de Xcode
+├── App/
+│   ├── AppState.swift
+│   └── RootView.swift
+├── Models/
+│   ├── Conversation.swift
+│   ├── Message.swift
+│   ├── User.swift
+│   └── LLMProvider.swift
+├── ViewModels/
+│   ├── AuthViewModel.swift
+│   ├── ChatViewModel.swift
+│   ├── ConversationListViewModel.swift
+│   └── SettingsViewModel.swift
+├── Views/
+│   ├── Chat/...
+│   ├── Conversations/...
+│   ├── Settings/...
+│   ├── Auth/...
+│   └── Components/...
+├── Services/
+│   ├── BotResponseService.swift
+│   ├── LLMService.swift
+│   ├── OpenAIService.swift
+│   ├── AnthropicService.swift
+│   ├── NetworkManager.swift
+│   ├── KeychainService.swift
+│   └── StreamingParser.swift
+├── Persistence/
+│   └── DataContainer.swift
+├── Utilities/
+│   └── AppLog.swift
+├── ChatPrototipoApp.swift
+├── ContentView.swift
+└── Assets.xcassets/
 ```
 
-## Características base
+## Implemented features
 
-- Lista de mensajes con burbujas estilo chat (usuario / bot)
-- Barra de entrada de texto con botón de envío
-- Respuesta simulada automática
-- Soporte para modo claro/oscuro
+- Layered MVVM architecture
+- SwiftData persistence for conversations and messages
+- Conversation list with search, pin, and delete
+- Local bot replies with motivational messages and keyword-based reactions
+- Local authentication with biometrics
+- App settings for theme and chat behavior
+- Structured logs with `OSLog`
 
-## Próximos pasos
+## Notes
 
-- [ ] Integrar API de LLM (OpenAI, Anthropic, etc.)
-- [ ] Persistencia de conversaciones (SwiftData / Core Data)
-- [ ] Historial de chats
-- [ ] Autenticación de usuario
-- [ ] Streaming de respuestas
+AI provider services are kept in the codebase for future use, but the current chat flow uses a local rule-based bot so it can be fully tested without external APIs.

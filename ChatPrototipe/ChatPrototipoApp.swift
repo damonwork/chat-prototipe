@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 @main
 struct ChatPrototipoApp: App {
@@ -6,5 +7,6 @@ struct ChatPrototipoApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(DataContainer.shared)
     }
 }

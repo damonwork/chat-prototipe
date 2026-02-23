@@ -11,6 +11,31 @@
 		AA1000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000002 /* ContentView.swift */; };
 		AA1000000000000000000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000003 /* Assets.xcassets */; };
 		AA1000000000000000000004 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000004 /* Preview Assets.xcassets */; };
+		AA1000000000000000000005 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000005 /* AppState.swift */; };
+		AA1000000000000000000006 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000006 /* RootView.swift */; };
+		AA1000000000000000000007 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000007 /* Conversation.swift */; };
+		AA1000000000000000000008 /* LLMProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000008 /* LLMProvider.swift */; };
+		AA1000000000000000000009 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000009 /* Message.swift */; };
+		AA100000000000000000000A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000000A /* User.swift */; };
+		AA100000000000000000000B /* DataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000000B /* DataContainer.swift */; };
+		AA100000000000000000000C /* AnthropicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000000C /* AnthropicService.swift */; };
+		AA100000000000000000000D /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000000D /* KeychainService.swift */; };
+		AA100000000000000000000E /* LLMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000000E /* LLMService.swift */; };
+		AA100000000000000000000F /* LLMServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000000F /* LLMServiceFactory.swift */; };
+		AA1000000000000000000010 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000010 /* NetworkManager.swift */; };
+		AA1000000000000000000011 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000011 /* OpenAIService.swift */; };
+		AA1000000000000000000012 /* StreamingParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000012 /* StreamingParser.swift */; };
+		AA1000000000000000000013 /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000013 /* AppLog.swift */; };
+		AA1000000000000000000014 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000014 /* AuthViewModel.swift */; };
+		AA1000000000000000000015 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000015 /* ChatViewModel.swift */; };
+		AA1000000000000000000016 /* ConversationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000016 /* ConversationListViewModel.swift */; };
+		AA1000000000000000000017 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000017 /* SettingsViewModel.swift */; };
+		AA1000000000000000000018 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000018 /* LoginView.swift */; };
+		AA1000000000000000000019 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2000000000000000000019 /* ChatView.swift */; };
+		AA100000000000000000001A /* CommonViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000001A /* CommonViews.swift */; };
+		AA100000000000000000001B /* ConversationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000001B /* ConversationListView.swift */; };
+		AA100000000000000000001C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000001C /* SettingsView.swift */; };
+		AA100000000000000000001D /* BotResponseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA200000000000000000001D /* BotResponseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +44,31 @@
 		AA2000000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA2000000000000000000003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA2000000000000000000004 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AA2000000000000000000005 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/AppState.swift; sourceTree = "<group>"; };
+		AA2000000000000000000006 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/RootView.swift; sourceTree = "<group>"; };
+		AA2000000000000000000007 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Conversation.swift; sourceTree = "<group>"; };
+		AA2000000000000000000008 /* LLMProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/LLMProvider.swift; sourceTree = "<group>"; };
+		AA2000000000000000000009 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Message.swift; sourceTree = "<group>"; };
+		AA200000000000000000000A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/User.swift; sourceTree = "<group>"; };
+		AA200000000000000000000B /* DataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence/DataContainer.swift; sourceTree = "<group>"; };
+		AA200000000000000000000C /* AnthropicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/AnthropicService.swift; sourceTree = "<group>"; };
+		AA200000000000000000000D /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/KeychainService.swift; sourceTree = "<group>"; };
+		AA200000000000000000000E /* LLMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/LLMService.swift; sourceTree = "<group>"; };
+		AA200000000000000000000F /* LLMServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/LLMServiceFactory.swift; sourceTree = "<group>"; };
+		AA2000000000000000000010 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/NetworkManager.swift; sourceTree = "<group>"; };
+		AA2000000000000000000011 /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/OpenAIService.swift; sourceTree = "<group>"; };
+		AA2000000000000000000012 /* StreamingParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/StreamingParser.swift; sourceTree = "<group>"; };
+		AA2000000000000000000013 /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/AppLog.swift; sourceTree = "<group>"; };
+		AA2000000000000000000014 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/AuthViewModel.swift; sourceTree = "<group>"; };
+		AA2000000000000000000015 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/ChatViewModel.swift; sourceTree = "<group>"; };
+		AA2000000000000000000016 /* ConversationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/ConversationListViewModel.swift; sourceTree = "<group>"; };
+		AA2000000000000000000017 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/SettingsViewModel.swift; sourceTree = "<group>"; };
+		AA2000000000000000000018 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Auth/LoginView.swift; sourceTree = "<group>"; };
+		AA2000000000000000000019 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Chat/ChatView.swift; sourceTree = "<group>"; };
+		AA200000000000000000001A /* CommonViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/CommonViews.swift; sourceTree = "<group>"; };
+		AA200000000000000000001B /* ConversationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Conversations/ConversationListView.swift; sourceTree = "<group>"; };
+		AA200000000000000000001C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Settings/SettingsView.swift; sourceTree = "<group>"; };
+		AA200000000000000000001D /* BotResponseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/BotResponseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +95,31 @@
 			children = (
 				AA2000000000000000000001 /* ChatPrototipoApp.swift */,
 				AA2000000000000000000002 /* ContentView.swift */,
+				AA2000000000000000000005 /* AppState.swift */,
+				AA2000000000000000000006 /* RootView.swift */,
+				AA2000000000000000000007 /* Conversation.swift */,
+				AA2000000000000000000008 /* LLMProvider.swift */,
+				AA2000000000000000000009 /* Message.swift */,
+				AA200000000000000000000A /* User.swift */,
+				AA200000000000000000000B /* DataContainer.swift */,
+				AA200000000000000000000C /* AnthropicService.swift */,
+				AA200000000000000000000D /* KeychainService.swift */,
+				AA200000000000000000000E /* LLMService.swift */,
+				AA200000000000000000000F /* LLMServiceFactory.swift */,
+				AA2000000000000000000010 /* NetworkManager.swift */,
+				AA2000000000000000000011 /* OpenAIService.swift */,
+				AA2000000000000000000012 /* StreamingParser.swift */,
+				AA200000000000000000001D /* BotResponseService.swift */,
+				AA2000000000000000000013 /* AppLog.swift */,
+				AA2000000000000000000014 /* AuthViewModel.swift */,
+				AA2000000000000000000015 /* ChatViewModel.swift */,
+				AA2000000000000000000016 /* ConversationListViewModel.swift */,
+				AA2000000000000000000017 /* SettingsViewModel.swift */,
+				AA2000000000000000000018 /* LoginView.swift */,
+				AA2000000000000000000019 /* ChatView.swift */,
+				AA200000000000000000001A /* CommonViews.swift */,
+				AA200000000000000000001B /* ConversationListView.swift */,
+				AA200000000000000000001C /* SettingsView.swift */,
 				AA2000000000000000000003 /* Assets.xcassets */,
 				AA4000000000000000000002 /* Preview Content */,
 			);
@@ -137,6 +212,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA100000000000000000001D /* BotResponseService.swift in Sources */,
+				AA100000000000000000001C /* SettingsView.swift in Sources */,
+				AA100000000000000000001B /* ConversationListView.swift in Sources */,
+				AA100000000000000000001A /* CommonViews.swift in Sources */,
+				AA1000000000000000000019 /* ChatView.swift in Sources */,
+				AA1000000000000000000018 /* LoginView.swift in Sources */,
+				AA1000000000000000000017 /* SettingsViewModel.swift in Sources */,
+				AA1000000000000000000016 /* ConversationListViewModel.swift in Sources */,
+				AA1000000000000000000015 /* ChatViewModel.swift in Sources */,
+				AA1000000000000000000014 /* AuthViewModel.swift in Sources */,
+				AA1000000000000000000013 /* AppLog.swift in Sources */,
+				AA1000000000000000000012 /* StreamingParser.swift in Sources */,
+				AA1000000000000000000011 /* OpenAIService.swift in Sources */,
+				AA1000000000000000000010 /* NetworkManager.swift in Sources */,
+				AA100000000000000000000F /* LLMServiceFactory.swift in Sources */,
+				AA100000000000000000000E /* LLMService.swift in Sources */,
+				AA100000000000000000000D /* KeychainService.swift in Sources */,
+				AA100000000000000000000C /* AnthropicService.swift in Sources */,
+				AA100000000000000000000B /* DataContainer.swift in Sources */,
+				AA100000000000000000000A /* User.swift in Sources */,
+				AA1000000000000000000009 /* Message.swift in Sources */,
+				AA1000000000000000000008 /* LLMProvider.swift in Sources */,
+				AA1000000000000000000007 /* Conversation.swift in Sources */,
+				AA1000000000000000000006 /* RootView.swift in Sources */,
+				AA1000000000000000000005 /* AppState.swift in Sources */,
 				AA1000000000000000000002 /* ContentView.swift in Sources */,
 				AA1000000000000000000001 /* ChatPrototipoApp.swift in Sources */,
 			);
