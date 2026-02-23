@@ -48,8 +48,6 @@ struct RootView: View {
             ensureConversationExists()
             if appState.onboarding.shouldPresent {
                 appState.showingOnboarding = true
-            } else if appState.profile.shouldShowOnboarding {
-                appState.showingProfile = true
             }
         }
         .onOpenURL { url in
@@ -85,11 +83,29 @@ struct RootView: View {
                         )
                     }
                 }
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItemGroup(placement: .topBarTrailing) {
                     Button {
                         appState.showingSettings = true
                     } label: {
                         Image(systemName: "gearshape")
+                    }
+
+                    Button(action: createConversation) {
+                        ZStack {
+                            Circle()
+                                .fill(
+                                    LinearGradient(
+                                        colors: [.indigo, .blue],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
+                                .frame(width: 30, height: 30)
+                                .shadow(color: .indigo.opacity(0.35), radius: 6, x: 0, y: 3)
+                            Image(systemName: "plus")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundStyle(.white)
+                        }
                     }
                 }
             }

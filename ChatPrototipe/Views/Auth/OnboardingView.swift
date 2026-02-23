@@ -56,9 +56,7 @@ struct OnboardingFlowView: View {
                     }
                     Spacer()
                     Button("Skip") {
-                        withAnimation(.easeOut(duration: 0.3)) {
-                            onFinishWithoutProfile()
-                        }
+                        onFinishWithoutProfile()
                     }
                     .font(.system(size: 14, weight: .medium))
                     .foregroundStyle(.secondary)
@@ -100,9 +98,7 @@ struct OnboardingFlowView: View {
                         }
 
                         Button("Start Without Profile") {
-                            withAnimation(.easeOut(duration: 0.3)) {
-                                onFinishWithoutProfile()
-                            }
+                            onFinishWithoutProfile()
                         }
                         .font(.system(size: 15, weight: .medium))
                         .foregroundStyle(.secondary)
