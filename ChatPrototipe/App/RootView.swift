@@ -121,11 +121,10 @@ struct RootView: View {
     }
 
     private func ensureConversationExists() {
+        // Only auto-select the first conversation on launch — never auto-create
         if let first = conversations.first {
             appState.selectedConversationID = first.id
-            return
         }
-        createConversation()
     }
 
     private func createConversation() {
@@ -146,16 +145,14 @@ struct RootView: View {
     }
 
     private func deleteConversation(_ conversation: Conversation) {
-        let willBeEmpty = conversations.filter { $0.id != conversation.id }.isEmpty
+        let deletingID = conversation.id
+        let nextConversation = conversations.first(where: { $0.id != deletingID })
         modelContext.delete(conversation)
         do {
             try modelContext.save()
-            AppLog.persistence.info("Conversation deleted: \(conversation.id.uuidString, privacy: .public)")
-            if appState.selectedConversationID == conversation.id {
-                appState.selectedConversationID = conversations.first(where: { $0.id != conversation.id })?.id
-            }
-            if willBeEmpty {
-                createConversation()
+            AppLog.persistence.info("Conversation deleted: \(deletingID.uuidString, privacy: .public)")
+            if appState.selectedConversationID == deletingID {
+                appState.selectedConversationID = nextConversation?.id
             }
         } catch {
             AppLog.persistence.error("Delete conversation failed: \(error.localizedDescription, privacy: .public)")
