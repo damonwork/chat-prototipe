@@ -1,6 +1,6 @@
-# ChatPrototipo
+# Chat Prototype
 
-Chat prototype app built with SwiftUI for iOS/iPadOS.
+Chat Prototype app built with SwiftUI for iOS/iPadOS.
 
 ## Requirements
 
@@ -11,7 +11,7 @@ Chat prototype app built with SwiftUI for iOS/iPadOS.
 ## Project structure
 
 ```
-ChatPrototipe/
+ChatPrototype/
 ├── App/
 │   ├── AppState.swift
 │   └── RootView.swift
@@ -43,7 +43,7 @@ ChatPrototipe/
 │   └── DataContainer.swift
 ├── Utilities/
 │   └── AppLog.swift
-├── ChatPrototipoApp.swift
+├── ChatPrototypeApp.swift
 ├── ContentView.swift
 └── Assets.xcassets/
 ```
