@@ -2,6 +2,34 @@ import Observation
 import Foundation
 
 @Observable
+final class ProfileStore {
+    var profile: UserProfile {
+        didSet { persist() }
+    }
+
+    private let defaults = UserDefaults.standard
+    private let storageKey = "local.profile"
+
+    init() {
+        if let data = defaults.data(forKey: storageKey),
+           let decoded = try? JSONDecoder().decode(UserProfile.self, from: data) {
+            profile = decoded
+        } else {
+            profile = UserProfile(username: "local-user", displayName: "You", avatarData: nil)
+        }
+    }
+
+    var shouldShowOnboarding: Bool {
+        profile.displayName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || profile.displayName == "You"
+    }
+
+    private func persist() {
+        guard let data = try? JSONEncoder().encode(profile) else { return }
+        defaults.set(data, forKey: storageKey)
+    }
+}
+
+@Observable
 final class SettingsStore {
     var appTheme: AppTheme = .system { didSet { persist() } }
     var messageFontSize: Double = 16 { didSet { persist() } }
@@ -40,5 +68,7 @@ final class SettingsStore {
 final class AppState {
     var selectedConversationID: UUID?
     var settings = SettingsStore()
+    var profile = ProfileStore()
     var showingSettings = false
+    var showingProfile = false
 }

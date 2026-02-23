@@ -29,7 +29,7 @@ final class AuthViewModel: ObservableObject {
             return
         }
 
-        let profile = UserProfile(username: cleanUser, displayName: cleanUser)
+        let profile = UserProfile(username: cleanUser, displayName: cleanUser, avatarData: nil)
         currentUser = profile
         persistSession(profile)
         AppLog.auth.info("User registered: \(cleanUser, privacy: .public)")
@@ -43,7 +43,7 @@ final class AuthViewModel: ObservableObject {
             return
         }
 
-        let profile = UserProfile(username: username, displayName: username)
+        let profile = UserProfile(username: username, displayName: username, avatarData: nil)
         currentUser = profile
         persistSession(profile)
         AppLog.auth.info("Login success for \(username, privacy: .public)")

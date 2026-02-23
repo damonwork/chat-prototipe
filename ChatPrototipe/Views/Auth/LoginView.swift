@@ -1,78 +1,103 @@
+import PhotosUI
 import SwiftUI
+import UIKit
 
-struct LoginView: View {
-    @ObservedObject var viewModel: AuthViewModel
-    @State private var username = ""
-    @State private var password = ""
-    @State private var isRegister = false
+struct ProfileSetupView: View {
+    @Environment(AppState.self) private var appState
+
+    @State private var selectedPhotoItem: PhotosPickerItem?
+    @State private var draftName = ""
 
     var body: some View {
-        VStack(spacing: 16) {
-            VStack(spacing: 4) {
-                Text("ChatPrototipo")
-                    .font(.largeTitle.bold())
-                Text("Sign in to continue")
-                    .foregroundStyle(.secondary)
-            }
-            .padding(.bottom, 12)
+        NavigationStack {
+            Form {
+                Section("Profile") {
+                    HStack(spacing: 12) {
+                        ProfileAvatarView(avatarData: appState.profile.profile.avatarData, displayName: appState.profile.profile.displayName, size: 56)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Your profile")
+                                .font(.headline)
+                            Text("Everything stays local on this device")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
 
-            TextField("Username", text: $username)
-                .textFieldStyle(.roundedBorder)
-                .textInputAutocapitalization(.never)
+                    TextField("Display name", text: $draftName)
+                        .textInputAutocapitalization(.words)
 
-            SecureField("Password", text: $password)
-                .textFieldStyle(.roundedBorder)
+                    PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
+                        Label("Choose photo", systemImage: "photo")
+                    }
 
-            Button(isRegister ? "Create account" : "Sign in") {
-                if isRegister {
-                    viewModel.register(username: username, password: password)
-                } else {
-                    viewModel.login(username: username, password: password)
+                    if appState.profile.profile.avatarData != nil {
+                        Button("Remove photo", role: .destructive) {
+                            appState.profile.profile.avatarData = nil
+                        }
+                    }
                 }
             }
-            .buttonStyle(.borderedProminent)
-            .frame(maxWidth: .infinity)
-
-            Button("Use Face ID / Touch ID") {
-                Task { await viewModel.loginWithBiometrics() }
+            .navigationTitle("Profile")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") {
+                        saveDraftName()
+                        appState.showingProfile = false
+                    }
+                }
             }
-            .buttonStyle(.bordered)
-
-            Button(isRegister ? "I already have an account" : "Create account") {
-                isRegister.toggle()
+            .onAppear {
+                draftName = appState.profile.profile.displayName
             }
-            .font(.subheadline)
-
-            if !viewModel.errorMessage.isEmpty {
-                Text(viewModel.errorMessage)
-                    .font(.caption)
-                    .foregroundStyle(.red)
+            .onChange(of: selectedPhotoItem) { _, newValue in
+                guard let item = newValue else { return }
+                Task {
+                    if let data = try? await item.loadTransferable(type: Data.self) {
+                        appState.profile.profile.avatarData = data
+                    }
+                }
             }
-
-            Spacer()
+            .onChange(of: draftName) { _, _ in
+                saveDraftName()
+            }
         }
-        .padding(24)
-        .background(
-            LinearGradient(colors: [Color.blue.opacity(0.15), Color.cyan.opacity(0.12)], startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
-        )
+    }
+
+    private func saveDraftName() {
+        let clean = draftName.trimmingCharacters(in: .whitespacesAndNewlines)
+        appState.profile.profile.displayName = clean.isEmpty ? "You" : clean
     }
 }
 
-struct RegisterView: View {
-    var body: some View {
-        EmptyStateView(title: "Register", subtitle: "Registration is integrated in LoginView")
-    }
-}
-
-struct ProfileView: View {
-    let user: UserProfile
+struct ProfileAvatarView: View {
+    let avatarData: Data?
+    let displayName: String
+    var size: CGFloat = 32
 
     var body: some View {
-        VStack(spacing: 10) {
-            AvatarView()
-            Text(user.displayName).font(.headline)
-            Text(user.username).font(.subheadline).foregroundStyle(.secondary)
+        Group {
+            if let avatarData, let image = UIImage(data: avatarData) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                Circle()
+                    .fill(LinearGradient(colors: [.blue, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .overlay(
+                        Text(initials)
+                            .font(.system(size: size * 0.35, weight: .semibold))
+                            .foregroundStyle(.white)
+                    )
+            }
         }
+        .frame(width: size, height: size)
+        .clipShape(Circle())
+    }
+
+    private var initials: String {
+        let words = displayName.split(separator: " ")
+        let firstTwo = words.prefix(2).compactMap { $0.first }
+        if firstTwo.isEmpty { return "U" }
+        return String(firstTwo).uppercased()
     }
 }

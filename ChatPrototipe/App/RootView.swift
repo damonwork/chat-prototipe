@@ -7,17 +7,10 @@ struct RootView: View {
     private var conversations: [Conversation]
 
     @State private var appState = AppState()
-    @StateObject private var authViewModel = AuthViewModel()
     @StateObject private var chatViewModel = ChatViewModel()
 
     var body: some View {
-        Group {
-            if authViewModel.isAuthenticated {
-                shell
-            } else {
-                LoginView(viewModel: authViewModel)
-            }
-        }
+        shell
         .environment(appState)
         .preferredColorScheme(appState.settings.appTheme.colorScheme)
         .sheet(isPresented: Binding(
@@ -27,9 +20,19 @@ struct RootView: View {
             SettingsView()
                 .environment(appState)
         }
+        .sheet(isPresented: Binding(
+            get: { appState.showingProfile },
+            set: { appState.showingProfile = $0 }
+        )) {
+            ProfileSetupView()
+                .environment(appState)
+        }
         .onAppear {
             AppLog.app.info("RootView started")
             ensureConversationExists()
+            if appState.profile.shouldShowOnboarding {
+                appState.showingProfile = true
+            }
         }
         .onOpenURL { url in
             guard url.scheme == "chatprototipo", url.host == "conversation", let id = UUID(uuidString: url.lastPathComponent) else {
@@ -55,9 +58,13 @@ struct RootView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        authViewModel.logout()
+                        appState.showingProfile = true
                     } label: {
-                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                        ProfileAvatarView(
+                            avatarData: appState.profile.profile.avatarData,
+                            displayName: appState.profile.profile.displayName,
+                            size: 26
+                        )
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -89,7 +96,9 @@ struct RootView: View {
 
     private func createConversation() {
         let conversation = Conversation()
-        let intro = Message(text: "Hi, I am your support bot. Share how you feel and I will do my best to help.", isFromUser: false, status: .delivered)
+        let name = appState.profile.profile.displayName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let introName = name.isEmpty ? "there" : name
+        let intro = Message(text: "Hi \(introName), I am your support bot. Share how you feel and I will do my best to help.", isFromUser: false, status: .delivered)
         intro.conversation = conversation
         conversation.messages.append(intro)
         modelContext.insert(conversation)
