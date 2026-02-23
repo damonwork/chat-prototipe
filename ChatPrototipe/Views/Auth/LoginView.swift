@@ -110,23 +110,23 @@ struct ProfileSetupView: View {
                     Spacer()
 
                     // Done button — full width, indigo, capsule
+                    let nameIsEmpty = draftName.trimmingCharacters(in: .whitespaces).isEmpty
                     Button(action: saveAndDismiss) {
                         Text("Done")
                             .font(.system(size: 16, weight: .semibold))
-                            .foregroundStyle(draftName.trimmingCharacters(in: .whitespaces).isEmpty ? .secondary : .white)
+                            .foregroundStyle(nameIsEmpty ? Color.secondary : Color.white)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 15)
-                            .background(
-                                Capsule()
-                                    .fill(
-                                        draftName.trimmingCharacters(in: .whitespaces).isEmpty
-                                            ? Color(.systemFill)
-                                            : LinearGradient(colors: [.indigo, .blue], startPoint: .leading, endPoint: .trailing)
-                                    )
-                            )
-                            .animation(.easeInOut(duration: 0.2), value: draftName.isEmpty)
+                            .background {
+                                if nameIsEmpty {
+                                    Capsule().fill(Color(.systemFill))
+                                } else {
+                                    Capsule().fill(LinearGradient(colors: [.indigo, .blue], startPoint: .leading, endPoint: .trailing))
+                                }
+                            }
+                            .animation(.easeInOut(duration: 0.2), value: nameIsEmpty)
                     }
-                    .disabled(draftName.trimmingCharacters(in: .whitespaces).isEmpty)
+                    .disabled(nameIsEmpty)
                     .padding(.horizontal, 24)
                     .padding(.bottom, 32)
                 }
