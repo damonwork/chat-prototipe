@@ -116,7 +116,7 @@ struct RootView: View {
         let conversation = Conversation()
         let name = appState.profile.profile.displayName.trimmingCharacters(in: .whitespacesAndNewlines)
         let introName = name.isEmpty ? "there" : name
-        let intro = Message(text: "Hi \(introName), I am your support bot. Share how you feel and I will do my best to help.", isFromUser: false, status: .delivered)
+        let intro = Message(text: "Hey \(introName)! 👋 I'm your personal support bot. Feel free to share how you're doing — I'm here to listen, motivate, and cheer you on! 🌟", isFromUser: false, status: .delivered)
         intro.conversation = conversation
         conversation.messages.append(intro)
         modelContext.insert(conversation)
